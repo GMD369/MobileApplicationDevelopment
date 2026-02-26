@@ -1,15 +1,19 @@
 package com.example.views
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 class AuthActivity : AppCompatActivity() {
@@ -19,6 +23,8 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var etConfirmPassword: EditText
+    private lateinit var ivProfileImage: ImageView
+    private lateinit var pickImageLauncher: ActivityResultLauncher<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +35,19 @@ class AuthActivity : AppCompatActivity() {
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
         etConfirmPassword = findViewById(R.id.etConfirmPassword)
+        ivProfileImage = findViewById(R.id.ivProfileImage)
         val spinnerCity = findViewById<Spinner>(R.id.spinnerCity)
         val rgUserType = findViewById<RadioGroup>(R.id.rgUserType)
         val cbTerms = findViewById<CheckBox>(R.id.cbTerms)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
+        val btnPickImage = findViewById<Button>(R.id.btnPickImage)
+
+        pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            onImagePicked(uri)
+        }
+
+        btnPickImage.setOnClickListener { pickImage() }
 
         // Spinner adapter
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.cities_array))
@@ -145,6 +159,18 @@ class AuthActivity : AppCompatActivity() {
                 etConfirmPassword.error = null
                 true
             }
+        }
+    }
+
+    private fun pickImage() {
+        pickImageLauncher.launch("image/*")
+    }
+
+    private fun onImagePicked(uri: Uri?) {
+        if (uri != null) {
+            ivProfileImage.setImageURI(uri)
+        } else {
+            toast("No image selected")
         }
     }
 
