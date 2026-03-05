@@ -43,11 +43,11 @@ class QuizActivity : AppCompatActivity() {
             }
 
             // Show Confirmation Dialog before submitting
-            showSubmitConfirmationDialog(rg1, rg2, rg3, rg4, rg5)
+            showSubmitConfirmationDialog(rg1, rg2, rg3, rg4, rg5, username)
         }
     }
 
-    private fun showSubmitConfirmationDialog(rg1: RadioGroup, rg2: RadioGroup, rg3: RadioGroup, rg4: RadioGroup, rg5: RadioGroup) {
+    private fun showSubmitConfirmationDialog(rg1: RadioGroup, rg2: RadioGroup, rg3: RadioGroup, rg4: RadioGroup, rg5: RadioGroup, username: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Submit Quiz")
         builder.setMessage("Are you sure you want to submit your answers?")
@@ -73,6 +73,7 @@ class QuizActivity : AppCompatActivity() {
             // Pass data to ResultActivity
             val intent = Intent(this, ResultActivity::class.java)
             intent.putExtra("SCORE", score)
+            intent.putExtra("USERNAME", username)
             startActivity(intent)
             finish() // Optional: Finish QuizActivity so user can't go back to it from results
         }
