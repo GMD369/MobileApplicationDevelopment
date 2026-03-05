@@ -15,7 +15,7 @@ class ResultActivity : AppCompatActivity() {
         val tvScore = findViewById<TextView>(R.id.tvScore)
         val btnAgain = findViewById<Button>(R.id.btnAgain)
 
-        tvScore.text = "Your Score: $score/5"
+        tvScore.text = "$score/5"
 
         btnAgain.setOnClickListener {
             val intent = Intent(this, QuizActivity::class.java)

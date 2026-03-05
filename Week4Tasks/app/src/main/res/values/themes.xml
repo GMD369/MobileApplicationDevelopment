@@ -1,8 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.Week4Tasks" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#DCDCDC</item>
+        <item name="colorOnPrimary">#111111</item>
+        <item name="colorPrimaryContainer">#2A2A2A</item>
+        <item name="colorOnPrimaryContainer">#F0F0F0</item>
+        <item name="colorSecondary">#9E9E9E</item>
+        <item name="colorOnSecondary">#111111</item>
+        <item name="colorSurface">#1A1A1A</item>
+        <item name="colorOnSurface">#F0F0F0</item>
+        <item name="colorSurfaceVariant">#222222</item>
+        <item name="colorOnSurfaceVariant">#9E9E9E</item>
+        <item name="colorOutline">#444444</item>
+        <item name="android:colorBackground">#0F0F0F</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
     </style>
 
     <style name="Theme.Week4Tasks" parent="Base.Theme.Week4Tasks" />

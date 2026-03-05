@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.RadioGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,9 @@ class QuizActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
+
+        val username = intent.getStringExtra("USERNAME") ?: "Player"
+        findViewById<TextView>(R.id.tvQuizTitle).text = "Welcome, $username!"
 
         val rg1 = findViewById<RadioGroup>(R.id.rgQuestion1)
         val rg2 = findViewById<RadioGroup>(R.id.rgQuestion2)
